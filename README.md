@@ -7,7 +7,7 @@ of the BATADAL and SWaT detectors.
 
 ## Repository structure
 
-​```
+​<pre>
 ics-gnn-attack-explanation/
 ├── README.md
 ├── requirements.txt
@@ -21,7 +21,7 @@ ics-gnn-attack-explanation/
     └── rag/
         ├── batadal_rag_explanation.ipynb
         └── swat_rag_explanation.ipynb
-​```
+</pre>
 
 ## What's here
 
