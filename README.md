@@ -6,45 +6,49 @@ BATADAL, SWaT, WADI, and UNSW-NB15, with a retrieval-augmented explanation layer
 of the BATADAL and SWaT detectors.
 
 ## Repository structure
+
+​```
 ics-gnn-attack-explanation/
 ├── README.md
 ├── requirements.txt
 ├── .gitignore
 └── notebooks/
-├── batadal_pipeline.ipynb
-├── swat_pipeline.ipynb
-├── wadi_pipeline.ipynb
-├── unsw15_pipeline.ipynb
-├── batadal_rag_explanation.ipynb
-└── swat_rag_explanation.ipynb
-
-text
+    ├── pipelines/
+    │   ├── batadal_pipeline.ipynb
+    │   ├── swat_pipeline.ipynb
+    │   ├── wadi_pipeline.ipynb
+    │   └── unsw15_pipeline.ipynb
+    └── rag/
+        ├── batadal_rag_explanation.ipynb
+        └── swat_rag_explanation.ipynb
+​```
 
 ## What's here
 
-**Detection pipelines** (`notebooks/`), one per dataset. Each trains classical baselines
-(Random Forest, and where applicable Isolation Forest and Gradient-Boosted Trees) alongside GDN
-and T-GCN, comparing correlation-based and Granger-causal graph construction, and evaluates
-under an attack-disjoint, leakage-free split rather than a random row split.
+**Detection pipelines** (`notebooks/pipelines/`), one per dataset. Each trains classical
+baselines (Random Forest, and where applicable Isolation Forest and Gradient-Boosted Trees)
+alongside GDN and T-GCN, comparing correlation-based and Granger-causal graph construction,
+and evaluates under an attack-disjoint, leakage-free split rather than a random row split.
 
 - `batadal_pipeline.ipynb`
 - `swat_pipeline.ipynb`
 - `wadi_pipeline.ipynb`
 - `unsw15_pipeline.ipynb`
 
-**RAG explanation layers**, built on top of the BATADAL and SWaT detection pipelines. Each
-retrieves a subgraph (implicated sensors, causal or correlated neighbours, and known attack
-patterns) from a Neo4j knowledge graph and generates a natural-language explanation for a
-flagged detection via the Groq API, with a lightweight automated quality check.
+**RAG explanation layers** (`notebooks/rag/`), built on top of the BATADAL and SWaT detection
+pipelines. Each retrieves a subgraph (implicated sensors, causal or correlated neighbours, and
+known attack patterns) from a Neo4j knowledge graph and generates a natural-language
+explanation for a flagged detection via the Groq API, with a lightweight automated quality
+check.
 
 - `batadal_rag_explanation.ipynb`
 - `swat_rag_explanation.ipynb`
 
 ## Setup
 
-```bash
+​```bash
 pip install -r requirements.txt
-```
+​```
 
 The RAG notebooks additionally need:
 - A Neo4j instance (AuraDB free tier or local Docker/Desktop)
